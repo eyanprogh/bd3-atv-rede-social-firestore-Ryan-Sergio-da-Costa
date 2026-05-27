@@ -1,0 +1,97 @@
+<!doctype html>
+
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATIVIDADE - REDE SOCIAL</title>
+
+    <link rel="stylesheet" href="./styles.css" />
+
+    <!-- IMPORT DO SDK DO FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-app.js"></script>
+
+    <!-- IMPORT DO SDK DO FIRESTORE  -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js"></script>
+  </head>
+
+  <body>
+    <div class="header_container">
+      <img src="./images/rede.png" />
+      <h1>ATIVIDADE - REDE SOCIAL</h1>
+    </div>
+
+    <div class="button_post_container">
+      <button name="btn_post" id="btn_post">POST</button>
+    </div>
+
+    <div class="posts_container"></div>
+
+    <!-- ESTRUTURA HTML DO FORMULÁRIO MODAL: -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+
+        <div class="form_post_container">
+          <h4>FAÇA UM POST</h4>
+
+          <form name="frm_post" id="frm_post">
+            <input
+              type="text"
+              name="txt_titulo"
+              id="txt_titulo"
+              placeholder="TITULO DO POST"
+            />
+            <br />
+            <input
+              type="text"
+              name="txt_post"
+              id="txt_post"
+              placeholder="TEXTO DO POST"
+            />
+            <br />
+            <button name="btn_postar" id="btn_postar">POSTAR</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    /***** ABERTURA/FECHAMENTO DO FORMUÁRIO MODAL *****/
+    let btn = document.getElementById("btn_post");
+    let modal = document.getElementById("myModal");
+    let span = document.getElementsByClassName("close")[0];
+
+    //ABRE O FORMULÁRIO MODAL:
+    btn.addEventListener("click", function (event) {
+      event.preventDefault();
+      modal.style.display = "block";
+    });
+
+    //FECHA O FORMULÁRIO MODAL:
+    span.addEventListener("click", function (event) {
+      modal.style.display = "none";
+    });
+
+    //CREDENCIAS DE ACESSO PARA O FIREBASE
+    const firebaseConfig = {
+      apiKey: "AIzaSyA0fgPmsMkxu5EdVZ7Ebo3lR1hDwY9TrjA",
+      authDomain: "app-nanosocial.firebaseapp.com",
+      projectId: "app-nanosocial",
+      storageBucket: "app-nanosocial.firebasestorage.app",
+      messagingSenderId: "428423900894",
+      appId: "1:428423900894:web:f131acc4da48400bb65c4f"
+    };
+
+    // INICIALIZA A CONEXÃO COM O FIREBASE E A APLICAÇÃO WEB:
+    firebase.initializeApp(firebaseConfig);
+
+    //INICIALIZA A CONEXÃO COM O BANCO DE DADOS FIRESTORE:
+    console.log("TESTE DE CONEXÃO:");
+    const db = firebase.firestore();
+
+    console.log(db);
+  </script>
+  <script src="./app.js"></script>
+</html>
